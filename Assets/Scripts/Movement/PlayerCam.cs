@@ -33,4 +33,16 @@ public class PlayerCam : MonoBehaviour
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
     }
+
+    public void kamerapois()
+    {
+        sensX = 0;
+        sensY = 0;
+    }
+
+    public void kamerap‰‰lle()
+    {
+        sensX = 400;
+        sensY = 400;
+    }
 }
