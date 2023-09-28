@@ -29,13 +29,14 @@ public class InventorySystem : MonoBehaviour
     {
         if (!InventoryUI.activeInHierarchy && Input.GetKeyDown(KeyCode.E))
         {
+            Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
             InventoryUI.SetActive(true);
         }
         else if (InventoryUI.activeInHierarchy && Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.Escape))
         {
-            
+            Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             InventoryUI.SetActive(false);

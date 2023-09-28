@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
 
-    [HideInInspector] public float walkSpeed;
-    [HideInInspector] public float sprintSpeed;
+    public float walkSpeed;
+    public float sprintSpeed;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector] public TextMeshProUGUI text_speed;
 
+    public bool isMoving = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -47,6 +49,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isMoving = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isMoving = false;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) & isMoving == true)
+        {
+            moveSpeed = sprintSpeed;
+        }
+
+        else
+        {
+            moveSpeed = walkSpeed;
+        }
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
