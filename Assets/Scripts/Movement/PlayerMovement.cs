@@ -15,8 +15,8 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     bool readyToJump;
 
-    [HideInInspector] public float walkSpeed;
-    [HideInInspector] public float sprintSpeed;
+    public float walkSpeed;
+    public float sprintSpeed;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -37,6 +37,8 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector] public TextMeshProUGUI text_speed;
 
+    public bool isMoving = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -47,6 +49,25 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isMoving = true;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isMoving = false;
+        }
+
+        if (Input.GetKey(KeyCode.LeftShift) & isMoving == true)
+        {
+            moveSpeed = sprintSpeed;
+        }
+
+        else
+        {
+            moveSpeed = walkSpeed;
+        }
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
@@ -71,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
 
         // when to jump
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
 
@@ -87,11 +108,11 @@ public class PlayerMovement : MonoBehaviour
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         // on ground
-        if(grounded)
+        if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
         // in air
-        else if(!grounded)
+        else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }
 
@@ -100,13 +121,11 @@ public class PlayerMovement : MonoBehaviour
         Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
         // limit velocity if needed
-        if(flatVel.magnitude > moveSpeed)
+        if (flatVel.magnitude > moveSpeed)
         {
             Vector3 limitedVel = flatVel.normalized * moveSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
-
-        text_speed.SetText("Speed: " + flatVel.magnitude);
     }
 
     private void Jump()

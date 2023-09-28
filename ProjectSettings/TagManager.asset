@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - whatIsPlayer
-  - 
+  - laura
   - 
   - whatIsWall
   - whatIsGround
@@ -36,7 +36,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Item
   m_SortingLayers:
   - name: Default
     uniqueID: 0
