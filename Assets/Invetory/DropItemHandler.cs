@@ -11,10 +11,19 @@ public class DropItemHandler : MonoBehaviour, IDropHandler
         InventoryUIInteraction draggableItem = dropped.GetComponent<InventoryUIInteraction>();
         Slot slot = draggableItem.draggedItemParent.GetComponent<Slot>();
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        GameObject player = GameObject.FindGameObjectWithTag("whatIsPlayer");
 
         GameObject droppedItem = Instantiate(slot.ItemInSlot.prefab, player.transform.position, Quaternion.identity);
         droppedItem.GetComponent<ItemObject>().amount = slot.AmountInSlot;
+        slot.ItemInSlot = null;
+        slot.AmountInSlot = 0;
+    }
+
+    public void DelItem(PointerEventData eventData)
+    {
+        GameObject deleted = eventData.pointerClick;
+        InventoryUIInteraction deletetableItem = deleted.GetComponent<InventoryUIInteraction>();
+        Slot slot = deletetableItem.draggedItemParent.GetComponent<Slot>();
         slot.ItemInSlot = null;
         slot.AmountInSlot = 0;
     }
