@@ -15,10 +15,10 @@ MonoBehaviour:
   id: 0
   itemName: "Ty\xF6kalupakki"
   description: Voit luoda asioita sen avulla!
-  prefab: {fileID: 919132149155446097, guid: 6a17b450ac07d3e4cac7fddbdb7c9afb, type: 3}
+  prefab: {fileID: 9004894174053167610, guid: 7c518fec5343da94289c5f7677caed6d, type: 3}
   icon: {fileID: 2800000, guid: de72f166319619241ac12b92e28e364c, type: 3}
   type: 0
-  rarity: 1
-  maxStack: 100
-  weight: 0.2
+  rarity: 2
+  maxStack: 40
+  weight: 15
   baseValue: 2
