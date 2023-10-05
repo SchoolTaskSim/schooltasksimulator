@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -37,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
 
     [HideInInspector] public TextMeshProUGUI text_speed;
 
-    public bool isMoving = false;
+
 
     private void Start()
     {
@@ -45,21 +46,66 @@ public class PlayerMovement : MonoBehaviour
         rb.freezeRotation = true;
 
         readyToJump = true;
+
+        number = sprintSpeed;
     }
+
+    public bool isSprinting = false;
+
+    float stamina = 100f;
+    float maxStamina = 100f;
+
+    float number;
+
+    public Slider slider;
 
     private void Update()
     {
 
+        if (isSprinting == true)
+        {
+            if (stamina >= 0)
+            {
+                stamina -= 10f * Time.deltaTime;
+            }
+        }
+        else if (Input.GetKey(KeyCode.W))
+        {
+            if (stamina <= maxStamina)
+            {
+                stamina += 0f * Time.deltaTime;
+            }
+        }
+        else
+        {
+            if (stamina <= 100)
+            {
+                stamina += 0f * Time.deltaTime;
+            }
+        }
+
+        if (stamina <= 0)
+        {
+            moveSpeed = walkSpeed;
+        }
+        else
+        {
+            sprintSpeed = number;
+        }
+
+        slider.value = stamina;
+
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            isMoving = true;
+            isSprinting = true;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            isMoving = false;
+            isSprinting = false;
         }
 
-        if (Input.GetKey(KeyCode.LeftShift) & isMoving == true)
+        if (Input.GetKey(KeyCode.LeftShift) & isSprinting == true)
         {
             moveSpeed = sprintSpeed;
         }
@@ -67,6 +113,11 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             moveSpeed = walkSpeed;
+        }
+
+        if (Input.GetKey(KeyCode.P))
+        {
+            stamina = maxStamina;
         }
         // ground check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
