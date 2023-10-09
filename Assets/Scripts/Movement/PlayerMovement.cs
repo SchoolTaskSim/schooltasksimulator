@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (stamina >= 0)
             {
-                stamina -= 10f * Time.deltaTime;
+                stamina -= 70f * Time.deltaTime;
             }
         }
         else if (Input.GetKey(KeyCode.W))
@@ -86,6 +86,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (stamina <= 0)
         {
+            isSprinting = false;
             moveSpeed = walkSpeed;
         }
         else
@@ -100,10 +101,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isSprinting = true;
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-        {
-            isSprinting = false;
-        }
+        //if (Input.GetKeyUp(KeyCode.LeftShift))
+       // {
+        //    isSprinting = false;
+       // }
 
         if (Input.GetKey(KeyCode.LeftShift) & isSprinting == true)
         {

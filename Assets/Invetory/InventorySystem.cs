@@ -40,6 +40,7 @@ public class InventorySystem : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             InventoryUI.SetActive(false);
+
         }
     }
 

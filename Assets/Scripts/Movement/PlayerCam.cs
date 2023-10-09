@@ -8,9 +8,13 @@ public class PlayerCam : MonoBehaviour
     public float sensY;
 
     public Transform orientation;
-
+    Transform parent;
+    Transform cam;
     float xRotation;
     float yRotation;
+
+    float sensX1 = 0;
+    float sensY1 = 0;
 
     private void Start()
     {
@@ -29,20 +33,37 @@ public class PlayerCam : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
+        rotate();
         // rotate cam and orientation
+
+
+        }
+
+
+     public void rotate()
+    {
+
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+
     }
 
-    public void kamerapois()
+    public void rotateoff()
     {
-        sensX = 0;
-        sensY = 0;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
+
+
 
     public void kamerap‰‰lle()
     {
-        sensX = 400;
-        sensY = 400;
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            sensX = 400;
+            sensY = 400;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 }
