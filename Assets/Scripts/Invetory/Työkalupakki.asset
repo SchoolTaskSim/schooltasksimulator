@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6615926611cf65f4c9f57558af02e1ae, type: 3}
+  m_Name: "Ty\xF6kalupakki"
+  m_EditorClassIdentifier: 
+  id: 0
+  itemName: "Ty\xF6kalupakki"
+  description: Voit luoda asioita sen avulla!
+  prefab: {fileID: 9004894174053167610, guid: 7c518fec5343da94289c5f7677caed6d, type: 3}
+  icon: {fileID: 2800000, guid: de72f166319619241ac12b92e28e364c, type: 3}
+  type: 0
+  rarity: 2
+  maxStack: 40
+  weight: 15
+  baseValue: 2
