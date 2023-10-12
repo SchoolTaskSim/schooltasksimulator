@@ -3,9 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+//k.v
+
+
 
 public class PlayerMovement : MonoBehaviour
 {
+    // älä muuta jo olevia muuttujia
     [Header("Movement")]
     public float moveSpeed;
 
@@ -39,6 +44,21 @@ public class PlayerMovement : MonoBehaviour
     [HideInInspector] public TextMeshProUGUI text_speed;
 
 
+    public static PlayerMovement Instance
+    {
+        get
+        {
+            return s_Instance;
+        }
+    }
+
+    private static PlayerMovement s_Instance;
+
+
+    void Awake()
+    {
+        s_Instance = this;
+    }
 
     private void Start()
     {
@@ -61,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-
+        // spriting system
         if (isSprinting == true)
         {
             if (stamina >= 0)
@@ -120,13 +140,13 @@ public class PlayerMovement : MonoBehaviour
         {
             stamina = maxStamina;
         }
-        // ground check
+        // maa check
         grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, whatIsGround);
 
         MyInput();
         SpeedControl();
 
-        // handle drag
+   
         if (grounded)
             rb.drag = groundDrag;
         else
@@ -143,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        // when to jump
+        // hyppy
         if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
@@ -156,14 +176,14 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
-        // calculate movement direction
+
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
-        // on ground
+        // on maassa
         if (grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-        // in air
+       // on ilmassa
         else if (!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
     }

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+// k.v
+
 
 public class PlayerCam : MonoBehaviour
 {
@@ -12,9 +14,6 @@ public class PlayerCam : MonoBehaviour
     Transform cam;
     float xRotation;
     float yRotation;
-
-    float sensX1 = 0;
-    float sensY1 = 0;
 
     private void Start()
     {
@@ -42,7 +41,7 @@ public class PlayerCam : MonoBehaviour
 
      public void rotate()
     {
-
+         // mahdollistaa kameran rotaation
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
 
