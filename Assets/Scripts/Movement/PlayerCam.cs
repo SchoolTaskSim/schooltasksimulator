@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
+
     public float sensX;
     public float sensY;
 
@@ -32,37 +33,14 @@ public class PlayerCam : MonoBehaviour
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-        rotate();
-        // rotate cam and orientation
-
-
-        }
-
-
-     public void rotate()
-    {
-         // mahdollistaa kameran rotaation
         transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, yRotation, 0);
 
+
+         
+        // rotate cam and orientation
+
+
     }
 
-    public void rotateoff()
-    {
-        Cursor.lockState = CursorLockMode.Confined;
-        Cursor.visible = true;
-    }
-
-
-
-    public void kamerap‰‰lle()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            sensX = 400;
-            sensY = 400;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-    }
 }

@@ -49,9 +49,7 @@ public class InventoryUIInteraction : MonoBehaviour, IPointerClickHandler, IBegi
         if (eventData.pointerClick.GetComponent<Slot>().ItemInSlot == null || ClickedItemUI.activeInHierarchy)
             return;
 
-        FindObjectOfType<ItemManager>().UseItem(eventData.pointerClick.GetComponent<Slot>().ItemInSlot.id);
-
-        ClickedItemUI.transform.position = Input.mousePosition + new Vector3(ClickedItemUI.GetComponent<RectTransform>().rect.width * 1.5f / 3 + 1, -(ClickedItemUI.GetComponent<RectTransform>().rect.height * 1.5f / 3 - 1), 0);
+        ClickedItemUI.transform.position = Input.mousePosition + new Vector3(ClickedItemUI.GetComponent<RectTransform>().rect.width * 1.5f / 2 + 1, -(ClickedItemUI.GetComponent<RectTransform>().rect.height * 1.5f / 2 - 1), 0);
         ClickedItemUI.GetComponent<ClickedItem>().clickedSlot = eventData.pointerClick.GetComponent<Slot>();
         ClickedItemUI.SetActive(true);
     }

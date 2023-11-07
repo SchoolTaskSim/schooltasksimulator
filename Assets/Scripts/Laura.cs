@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Xml.Linq;
 using TMPro;
 using UnityEngine;
 
@@ -33,6 +34,7 @@ public class Laura : MonoBehaviour
                 Cursor.visible = true;
                 Time.timeScale = 0f;
                 lauraUI.SetActive(true);
+
             }
            
             else if (lauraUI.activeInHierarchy && Input.GetKeyDown(KeyCode.F) || Input.GetKeyDown(KeyCode.Escape))
